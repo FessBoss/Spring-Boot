@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Jpa Messages</title>
+    <link rel="stylesheet" href="/css/messages.css">
+</head>
+<body>
+<div>
+    <form method="post" th:action="@{/messages}">
+        <input type="text" name="text" placeholder="Введите сообщение" />
+        <input type="text" name="tag" placeholder="Введите тэг" />
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+<h2>Список сообщений</h2>
+<div>
+    <form method="get" th:action="@{/filter}">
+        <input type="text" name="tag"/>
+        <button type="submit">Найти</button>
+    </form>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Text</th>
+        <th>Tag</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr th:if="${messages.empty}">
+            <td colspan="3">No Messages Available</td>
+        </tr>
+        <tr th:each="message : ${messages}">
+            <td th:text="${message.id}"/>
+            <td th:text="${message.text}" />
+            <td th:text="${message.tag}" />
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
