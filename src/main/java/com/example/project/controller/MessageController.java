@@ -34,12 +34,8 @@ public class MessageController {
 
     @GetMapping("/filter")
     public String filter(@RequestParam(name="tag",required = false) String tag, Model model) {
-        if (tag == null || tag.isEmpty()) {
-            return "redirect:/messages";
-        } else {
-            List<Message> messages = messageDataService.findByTag(tag);
-            model.addAttribute("messages", messages);
-            return "messages";
-        }
+        List<Message> messages = messageDataService.findByTag(tag);
+        model.addAttribute("messages", messages);
+        return "messages";
     }
 }

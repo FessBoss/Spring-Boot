@@ -15,9 +15,12 @@
 </div>
 <h2>Список сообщений</h2>
 <div>
-    <form method="get" th:action="@{/filter}">
+    <form method="get" th:action="@{/filter}" style="float:left;">
         <input type="text" name="tag"/>
         <button type="submit">Найти</button>
+    </form>
+    <form method="get" th:action="@{/messages}">
+        <button type="submit">Показать все</button>
     </form>
 </div>
 <table>
