@@ -16,7 +16,7 @@ import java.util.List;
 public class MessageController {
 
     @Autowired
-    MessageDataService messageDataService;
+    private MessageDataService messageDataService;
 
     @GetMapping("/messages")
     public String getMessages(Model model) {
