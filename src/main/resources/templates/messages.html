@@ -32,6 +32,7 @@
         <th>ID</th>
         <th>Text</th>
         <th>Tag</th>
+        <th>Author</th>
     </tr>
     </thead>
     <tbody>
@@ -40,8 +41,9 @@
         </tr>
         <tr th:each="message : ${messages}">
             <td th:text="${message.id}"/>
-            <td th:text="${message.text}" />
-            <td th:text="${message.tag}" />
+            <td th:text="${message.text}"/>
+            <td th:text="${message.tag}"/>
+            <td th:text="${message.authorName}"/>
         </tr>
     </tbody>
 </table>

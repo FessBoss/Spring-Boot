@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Collections;
@@ -17,12 +18,13 @@ public class RegistrationController {
     private UserDataService userDataService;
 
     @GetMapping("/registration")
-    public String GetRegistration() {
+    public String GetRegistration(Model model) {
+        model.addAttribute("user", new User());
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String PostRegistration(User user, Model model) {
+    public String PostRegistration(@ModelAttribute User user, Model model) {
         User userFromDB = userDataService.findByUsername(user.getUsername());
 
         if (userFromDB != null) {
