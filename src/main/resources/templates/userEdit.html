@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Editor</title>
+</head>
+<body>
+<h1>User Editor</h1>
+<form th:action="@{/user}" method="post" th:object="${user}">
+    <input type="text" th:field="*{id}" readonly disabled>
+    <input type="text" th:field="*{username}">
+    <input type="text" th:field="*{password}">
+    <select th:field="${user.active}">
+        <option th:value="'true'" th:text="'true'" />
+        <option th:value="'false'" th:text="'false'" />
+    </select>
+    <div th:each="role : ${T(com.example.project.model.Role).values()}">
+        <label th:text="${role}" />
+        <input type="checkbox" th:field="*{roles}" th:value="${role}" th:checked="${#strings.contains(user.roles, role)}" />
+    </div>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>
