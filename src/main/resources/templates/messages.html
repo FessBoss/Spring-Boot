@@ -10,9 +10,10 @@
     <input type="submit" value="Sign Out"/>
 </form>
 <div>
-    <form method="post" th:action="@{/messages}">
+    <form method="post" th:action="@{/messages}" enctype="multipart/form-data">
         <input type="text" name="text" placeholder="Введите сообщение" />
         <input type="text" name="tag" placeholder="Введите тэг" />
+        <input type="file" name="file">
         <button type="submit">Добавить</button>
     </form>
 </div>
@@ -44,6 +45,9 @@
             <td th:text="${message.text}"/>
             <td th:text="${message.tag}"/>
             <td th:text="${message.authorName}"/>
+            <td th:if="${message.filename != null and message.filename != ''}">
+                <img th:src="@{|/images/upload/${message.filename}|}" width="120" height="120"/>
+            </td>
         </tr>
     </tbody>
 </table>
