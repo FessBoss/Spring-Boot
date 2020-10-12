@@ -25,8 +25,10 @@ public class MessageController {
     FileUploadService fileUploadService;
 
     @GetMapping("/messages")
-    public String getMessages(Model model) {
+    public String getMessages(@AuthenticationPrincipal User user,
+                              Model model) {
         List<Message> messages = messageDataService.findAll();
+        model.addAttribute("user", user);
         model.addAttribute("messages", messages);
         return "messages";
     }
@@ -38,7 +40,7 @@ public class MessageController {
                                @RequestParam("file") MultipartFile file) {
         Message message = new Message(text, tag, user);
 
-        if (file != null) {
+        if (file != null && !file.isEmpty()) {
             fileUploadService.upload(file);
             message.setFilename(file.getOriginalFilename());
         }
