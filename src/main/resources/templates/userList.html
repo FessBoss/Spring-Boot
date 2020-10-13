@@ -55,22 +55,49 @@
         </span>
     </div>
 </nav>
-<h1>Admin Panel</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Role</th>
-        <th>Edit</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.username}">
-        <td th:text="${#strings.setJoin(user.roles, ',')}">
-        <td><a th:href="@{|/user/${user.id}|}">edit</a></td>
-    </tr>
-    </tbody>
-</table>
+<h1 class="mt-1 ml-2">Admin Panel</h1>
+<div class="mt-1 ml-2">
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.username}">
+            <td th:text="${#strings.setJoin(user.roles, ',')}">
+            <td><a th:href="@{|/user/${user.id}|}">edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2 class="mt-1 ml-2">Mail sender</h2>
+<div class="mt-1 ml-2">
+    <form th:action="@{/user/send_mail}" method="post">
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Mail to:</label>
+            <div class="col-sm-6">
+                <input type="text" name="mailTo" placeholder="Кому" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Subject</label>
+            <div class="col-sm-6">
+                <input type="text" name="subject" placeholder="Тема" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Message</label>
+            <div class="col-sm-6">
+                <input type="text" name="message" placeholder="Сообщение" />
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Sign In</button>
+    </form>
+</div>
 </body>
 </html>
