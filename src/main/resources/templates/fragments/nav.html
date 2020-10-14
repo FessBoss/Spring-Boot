@@ -1,6 +1,6 @@
 <div xmlns:th="http://www.thymeleaf.org" th:fragment="nav">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" th:href="@{/}">Fess-Style</a>
+        <a class="navbar-brand mb-1" th:href="@{/}">Fess-Style</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -38,12 +38,12 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Найти</button>
             </form>
-            <span th:if="${user}">
+            <span th:if="${user} and ${user.active} == true">
             <form th:action="@{/logout}" method="post" class="form-inline my-2 my-lg-0 pl-1">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Выйти</button>
             </form>
-        </span>
-            <span th:unless="${user}" class="my-2 my-lg-0 pl-1">
+            </span>
+            <span th:unless="${user} and ${user.active} == true" class="my-2 my-lg-0 pl-1">
             <button onclick="location.href='/login'" class="btn btn-outline-success my-2 my-sm-0">Войти</button>
         </span>
         </div>

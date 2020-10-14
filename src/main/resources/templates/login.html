@@ -9,7 +9,8 @@
 <body>
 <div th:insert="~{fragments/nav::nav}"></div>
 <div class="container mt-5">
-    <div th:if="${param.error}">
+    <div class="alert alert-danger" role="alert"
+         th:if="${param.error}">
         Invalid username or password.
     </div>
     <div th:if="${param.logout}">
@@ -17,6 +18,9 @@
     </div>
     <div th:if="${message != null}">
         <p th:text="${message}" />
+    </div>
+    <div class="alert alert-danger" role="alert"
+         th:if="${Session} and ${Session.SPRING_SECURITY_LAST_EXCEPTION}" th:text="${Session.SPRING_SECURITY_LAST_EXCEPTION}">
     </div>
     <form th:action="@{/login}" method="post">
         <div class="form-group row">
