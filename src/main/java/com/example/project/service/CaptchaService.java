@@ -22,6 +22,7 @@ public class CaptchaService {
         requestMap.add("response", captchaResponse);
 
         CaptchaResponse apiResponse = restTemplate.postForObject(GOOGLE_RECAPTCHA_ENDPOINT, requestMap, CaptchaResponse.class);
+
         if (apiResponse == null) {
             return false;
         }
