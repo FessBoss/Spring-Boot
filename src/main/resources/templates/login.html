@@ -9,11 +9,10 @@
 <body>
 <div th:insert="~{fragments/nav::nav}"></div>
 <div class="container mt-5">
-    <div class="alert alert-danger" role="alert"
-         th:if="${param.error}">
+    <div class="alert alert-danger col-md-8 col-md-offset-4" role="alert" th:if="${param.error}">
         Invalid username or password.
     </div>
-    <div th:if="${param.logout}">
+    <div class="alert alert-danger col-md-8 col-md-offset-4" role="alert" th:if="${param.logout}">
         You have been logged out.
     </div>
     <form th:action="@{/login}" method="post">

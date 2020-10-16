@@ -13,9 +13,8 @@
 <div class="mt-1 ml-2">
     <form method="post" th:action="@{/messages}" enctype="multipart/form-data">
         <div class="mt-1 col-sm-4">
-            <input type="text" class="form-control "
-                   th:classappend="${textError} ? 'is-invalid' : ''"
-                   th:if="${message}" th:value="${message.text}" name="text" placeholder="Введите сообщение" />
+            <input type="text" name="text" placeholder="Введите сообщение"
+                   th:classappend="${textError} ? 'is-invalid' : ''"/>
             <div th:if="${textError}" th:text="${textError}" class="invalid-feedback"></div>
         </div>
         <div class="mt-1 col-sm-4"><input type="text" name="tag" placeholder="Введите тэг" /></div>

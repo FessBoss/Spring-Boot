@@ -1,4 +1,5 @@
-<div xmlns:th="http://www.thymeleaf.org" th:fragment="nav">
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="nav"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand mb-1" th:href="@{/}">Fess-Style</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,13 +11,13 @@
                 <!--            <li class="nav-item active">-->
                 <!--                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
                 <!--            </li>-->
-                <li class="nav-item">
+                <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
                     <a class="nav-link" th:href="@{/profile}">Profile</a>
                 </li>
-                <li class="nav-item">
+                <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
                     <a class="nav-link" th:href="@{/messages}">Messages</a>
                 </li>
-                <li class="nav-item">
+                <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
                     <a class="nav-link" th:href="@{/user}">Admin Panel</a>
                 </li>
                 <!--            <li class="nav-item dropdown">-->
@@ -38,14 +39,14 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Найти</button>
             </form>
-            <span th:if="${user} and ${user.active} == true">
-            <form th:action="@{/logout}" method="post" class="form-inline my-2 my-lg-0 pl-1">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Выйти</button>
-            </form>
-            </span>
-            <span th:unless="${user} and ${user.active} == true" class="my-2 my-lg-0 pl-1">
-            <button onclick="location.href='/login'" class="btn btn-outline-success my-2 my-sm-0">Войти</button>
-        </span>
+            <div sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post" class="form-inline my-2 my-lg-0 pl-1">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Выйти</button>
+                </form>
+            </div>
+            <div sec:authorize="!isAuthenticated()" class="ml-1">
+                <button onclick="location.href='/login'" class="btn btn-outline-success my-2 my-sm-0">Войти</button>
+            </div>
         </div>
     </nav>
 </div>
